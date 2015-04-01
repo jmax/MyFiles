@@ -1,0 +1,14 @@
+<h2>My Files</h2>
+
+<div class="list">
+  <% @uploads.each do |upload| %>
+
+    <div class="item">
+      <%= link_to upload.asset_file_name, upload.asset.url %>
+      <p class="tags">
+        <span>Tags:</span> <%= upload.tag_list %>
+      </p>
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyFiles</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrapper">
+    <%= link_to "My Files", root_path %>
+
+    <a href="#" data-activates="mobile-demo" class="button-collapse">
+      <i class="mdi-navigation-menu"></i>
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "My files", uploads_path %>
+        </li>
+        <li>
+          <%= link_to "Sign out", destroy_user_session_path,
+                method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Sign up", new_user_registration_path %>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "Sign out", destroy_user_session_path,
+                method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Sign up", new_user_registration_path %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p
+
+<%= yield %>
+
+</body>
+</html>

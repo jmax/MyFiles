@@ -1,0 +1,21 @@
+<h1>Files</h1>
+
+<div class="list">
+  <% @uploads.each do |upload| %>
+
+    <div class="item">
+      <%= link_to upload.asset_file_name, upload.asset.url %>
+      <span class="tags"><%= upload.tag_list %></span>
+      <hr>
+
+      <div class="action">
+        <% unless current_user && current_user.liked_uploads.includes(upload) %>
+          <%= link_to "Like", "/uploads/#{upload.id}/likes", method: :put %>
+        <% else %>
+          <span>Liked!</span>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
